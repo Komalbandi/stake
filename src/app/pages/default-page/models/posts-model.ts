@@ -1,12 +1,12 @@
 import {PostsInterface} from '../../../interfaces/posts-interface';
 export class PostsModel {
-    posts?: PostsInterface[];
+    posts: PostsInterface[];
 
     constructor(data: PostsInterface[]) {
         this.posts = data;
     }
 
-    public get getAllData() {
+    public get getAllData(): PostsInterface[] {
         return this.posts;
     }
 
@@ -22,6 +22,16 @@ export class PostsModel {
     getDataById(id: number) {
         return this.posts!.find((post) => {
             return post.id === id;
-        })
+        });
+    }
+
+    getDataByUserId(id: number) {
+        return this.posts!.filter((post) => {
+            return post.userId === id;
+        });
+    }
+
+    resetWithNewData(data: PostsInterface[]) {
+        this.posts = data;
     }
 }

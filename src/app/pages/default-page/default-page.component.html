@@ -1,7 +1,22 @@
 <ng-template [ngIf]="results" [ngIfElse]="loading">
+    <div class="row" *ngIf="users">
+        <div class="col-10">
+            <select class="form-select" (change)="userSelected($event)">
+                <option selected>Search by user</option>
+                <ng-container *ngFor="let user of users.all">
+                    <option [value]="user.id">{{user.username}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary" (click)="searchByUser()">Search</button>
+        </div>
+    </div>
+    <br/>
+    <hr/>
     <div class="row" *ngFor="let post of results">
         <div class="col-10">
-            {{post.body}}-{{post.id}}
+            {{post.body}}-{{post.id}}-{{post.userId}}
         </div>
         <div class="col-2">
             <button type="button" class="btn-primary" (click)='seePostsDetails(post.id)'>Details</button>
