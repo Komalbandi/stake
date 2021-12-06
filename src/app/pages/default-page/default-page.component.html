@@ -1,0 +1,40 @@
+<ng-template [ngIf]="results" [ngIfElse]="loading">
+    <div class="row" *ngFor="let post of results">
+        <div class="col-10">
+            {{post.body}}-{{post.id}}
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn-primary" (click)='seePostsDetails(post.id)'>Details</button>
+        </div>
+        <hr/>
+    </div>
+    <div class="row">
+        <div class="col-5 text-start">
+            <button type="button" class="btn btn-secondary" (click)="goToPreviousPage()"
+                    [disabled]="canGoToPreviousPage()?null:true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="col-2 text-center">
+            <input type="text" [value]="currentPage" class="form-control">
+        </div>
+        <div class="col-5 text-end">
+            <button type="button" class="btn btn-secondary" (click)="goToNextPage()"
+                    [disabled]="canGoToNextPage()?null:true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div>loading...</div>
+</ng-template>
